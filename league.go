@@ -46,7 +46,7 @@ func (l *League) Draft() {
 
 	for round := 1; round <= 8; round++ {
 		for _, t := range l.T {
-			if t.Name == smartTeam+"NOT" {
+			if t.Name == smartTeam {
 				switch round {
 				case 1:
 					t.WR1 = l.NextWR()

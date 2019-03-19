@@ -38,8 +38,8 @@ func (t *Team) findRandomEmptyPos() Position {
 	var needs []Position
 
 	studPositionsFilled := t.RB1 != nil && t.RB2 != nil && t.WR1 != nil && t.WR2 != nil
-	//coreCoreFilled := t.RB1 != nil && t.RB2 != nil && t.WR1 != nil && t.WR2 != nil && t.QB1 != nil
-	coreFilled := t.RB1 != nil && t.RB2 != nil && t.WR1 != nil && t.WR2 != nil && t.QB1 != nil && t.TE1 != nil
+	coreCoreFilled := studPositionsFilled && t.QB1 != nil
+	coreFilled := coreCoreFilled && t.TE1 != nil
 
 	if studPositionsFilled && t.QB1 == nil {
 		needs = append(needs, PosQB1)
@@ -56,7 +56,7 @@ func (t *Team) findRandomEmptyPos() Position {
 	if t.WR1 != nil && t.WR2 == nil {
 		needs = append(needs, PosWR2)
 	}
-	if t.TE1 == nil {
+	if coreCoreFilled && t.TE1 == nil {
 		needs = append(needs, PosTE)
 	}
 	if coreFilled && t.Kicker == nil {
